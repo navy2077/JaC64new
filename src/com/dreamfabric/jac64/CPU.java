@@ -51,8 +51,8 @@ public class CPU extends MOS6510Core {
 	private static final long CYCLES_PER_DEBUG = 10000000;
 	public static final boolean DEBUG = false;
 
-	private C1541Emu c1541;
-	private Loader loader;
+	private C1541Emu c1541 = null;
+	private Loader loader = null;
 	private int windex = 0;
 
 	private int cheatMon[];

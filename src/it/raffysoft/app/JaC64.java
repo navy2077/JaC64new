@@ -31,19 +31,19 @@ public class JaC64 implements ActionListener, KeyEventDispatcher {
 			+ "The SID emulation use the resid Java port by Ken Händel\n\n"
 			+ "For more information see: http://www.jac64.com/";
 
-	private C64Reader reader;
-	private C64Screen scr;
+	private C64Reader reader = null;
+	private C64Screen scr = null;
 	private boolean fullscreen = false;
 
-	private CPU cpu;
-	private JFrame C64Win;
-	private KeyListener c64Canvas;
-	private FileDialog fileDialog;
+	private CPU cpu = null;
+	private JFrame C64Win = null;
+	private KeyListener c64Canvas = null;
+	private FileDialog fileDialog = null;
 
-	private JMenuItem load;
-	private JTable fileTable;
-	private JDialog loadFile;
-	private DirEntry[] dirEntries;
+	private JMenuItem load = null;
+	private JTable fileTable = null;
+	private JDialog loadFile = null;
+	private DirEntry[] dirEntries = null;
 
 	private static final String[] SID_TYPES = new String[] { "SID: resid MOS 6581", "SID: resid MOS 8580",
 			"SID: JaC64 Original" };
@@ -166,10 +166,10 @@ public class JaC64 implements ActionListener, KeyEventDispatcher {
 	public boolean dispatchKeyEvent(KeyEvent e) {
 		System.out.println("jac64 - dispatchKeyEvent()");
 		boolean focused = C64Win.isFocused();
-		System.out.println("focused="+focused);
+		System.out.println("focused=" + focused);
 		if (focused) {
 			int eid = e.getID();
-			System.out.println("eid="+eid);
+			System.out.println("eid=" + eid);
 			if (eid == KeyEvent.KEY_PRESSED) {
 				c64Canvas.keyPressed(e);
 			} else if (eid == KeyEvent.KEY_RELEASED) {
