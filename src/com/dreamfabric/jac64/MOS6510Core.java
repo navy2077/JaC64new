@@ -23,7 +23,7 @@ import java.io.*;
  */
 public abstract class MOS6510Core extends MOS6510Ops {
 	protected int memory[];
-	protected boolean debug = false;
+	protected boolean debug = true;
 
 	public static final int NMI_DELAY = 2;
 	public static final int IRQ_DELAY = 2;
@@ -257,8 +257,21 @@ public abstract class MOS6510Core extends MOS6510Ops {
 		acc = tmp & 0xff;
 		carry = nxtcarry;
 	}
-
+	
+	private void printRegisters() {
+		System.out.println("Registers:");
+		System.out.println("PC="+this.pc);
+		System.out.println("A="+this.acc);
+		System.out.println("X="+this.x);
+		System.out.println("Y="+this.y);
+		System.out.println("S="+this.s);
+	}
+	private void printInstruction(Integer op) {
+		System.out.println("Instrucion:");
+		System.out.println("OP="+op);
+	}
 	public void emulateOp() {
+		printRegisters();
 		// Before executing an operation - check for interrupts!!!
 		if (checkInterrupt) {
 			// Trigger on negative edge!
@@ -445,7 +458,7 @@ public abstract class MOS6510Core extends MOS6510Ops {
 		if (read && write) {
 			writeByte(adr, data);
 		}
-
+		printInstruction(op);
 		switch (op) {
 		case BRK:
 			brk = true;
@@ -821,6 +834,7 @@ public abstract class MOS6510Core extends MOS6510Ops {
 		} else if (addrMode == ACCUMULATOR) {
 			acc = data;
 		}
+//		printRegisters();
 	}
 
 	public void unknownInstruction(int pc, int op) {

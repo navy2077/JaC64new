@@ -80,7 +80,7 @@ public class JaC64 implements ActionListener, KeyEventDispatcher {
 		SIDMixer.DL_BUFFER_SIZE = 16384;
 		Debugger monitor = new Debugger();
 
-		cpu = new CPU(monitor, "", new SELoader());
+		this.cpu = new CPU(monitor, "", new SELoader());
 		scr = new C64Screen(monitor, true);
 		cpu.init(scr);
 

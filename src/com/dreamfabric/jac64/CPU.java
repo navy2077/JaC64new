@@ -23,7 +23,7 @@ import com.dreamfabric.c64utils.*;
  */
 public class CPU extends MOS6510Core {
 
-	public static final boolean DEBUG_EVENT = false;
+	public static final boolean DEBUG_EVENT = true;
 	// The IO RAM memory at 0x10000 (just since there is RAM there...)
 	public static final int IO_OFFSET = 0x10000 - 0xd000;
 	public static final int BASIC_ROM2 = 0x1a000;
@@ -49,7 +49,7 @@ public class CPU extends MOS6510Core {
 	public boolean pause = false;
 
 	private static final long CYCLES_PER_DEBUG = 10000000;
-	public static final boolean DEBUG = false;
+	public static final boolean DEBUG = true;
 
 	private C1541Emu c1541 = null;
 	private Loader loader = null;
@@ -328,7 +328,7 @@ public class CPU extends MOS6510Core {
 
 	public void setPC(int startAdress) {
 		// The processor flags
-		pc = startAdress;
+		this.pc = startAdress;
 	}
 
 	public String getName() {
